@@ -7,6 +7,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
 import leveldb.LDBTest;
+import mysql.MySQLTest;
 import redis.RedisTest;
 
 /*import redis.clients.jedis.JedisPool;
@@ -18,6 +19,7 @@ import static org.fusesource.leveldbjni.JniDBFactory.factory;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 
 
 @Path("/db")
@@ -48,4 +50,10 @@ public class HTTPInterface {
         return LDBTest.execute();
     }
 
+    @GET
+    @Path("/mysql")
+    @Produces("text/plain")
+    public String executeMySQL() throws SQLException, ClassNotFoundException {
+        return MySQLTest.mysqlTest();
+    }
 }
