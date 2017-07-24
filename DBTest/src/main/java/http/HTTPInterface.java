@@ -5,10 +5,34 @@ package http; /**
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+
+import leveldb.LDBTest;
 import redis.RedisTest;
+
+/*import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.JedisPoolConfig;*/
+
+import org.iq80.leveldb.DB;
+import org.iq80.leveldb.Options;
+import static org.fusesource.leveldbjni.JniDBFactory.factory;
+
+import java.io.File;
+import java.io.IOException;
+
 
 @Path("/db")
 public class HTTPInterface {
+
+    public static DB db;
+
+    //public static JedisPool pool;
+
+    @GET
+    @Path("/")
+    @Produces("text/plain")
+    public String init() throws IOException {
+        return "";
+    }
 
     @GET
     @Path("/redis")
@@ -20,8 +44,8 @@ public class HTTPInterface {
     @GET
     @Path("/ldb")
     @Produces("text/plain")
-    public String executeLDB() throws InterruptedException {
-        return RedisTest.execute();
+    public String executeLDB() throws InterruptedException, IOException {
+        return LDBTest.execute();
     }
 
 }

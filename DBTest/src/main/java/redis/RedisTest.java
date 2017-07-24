@@ -31,8 +31,16 @@ public class RedisTest {
             (new Thread(new Consumer("redis.Consumer"+Integer.toString(i)))).start();
         }*/
 
-        (new Thread(new Producer("redis.Producer"))).start();
-        (new Thread(new Consumer("redis.Consumer"))).start();
+        Thread t1 = new Thread(new Producer("redis.Producer"));
+        Thread t2 = new Thread(new Consumer("redis.Consumer"));
+
+        t1.start();
+        t2.start();
+
+        /*t1.start();
+        t2.start();
+        t1.join();
+        t2.join();*/
 
         /*System.out.println(System.currentTimeMillis()-initTime);
         System.out.println(Consumer.consumedID-initConsumeID);
@@ -40,9 +48,14 @@ public class RedisTest {
 
         pool.destroy();
 
-        Thread.sleep(10);
+        //Thread.sleep(10);
 
-        return "Execution Completed";
+        /*return "Execution Completed.\n"
+                +"Messages Produced :"+Integer.toString(Integer.parseInt(jedis.get("mid"))-initMessageID)+'\n'
+                +"Messages Consumed :"+Integer.toString(Integer.parseInt(jedis.get("cid"))-initConsumeID)+'\n'
+                +"Time Consumed :" + Long.toString(System.currentTimeMillis()-initTime);*/
+
+        return "Execution Completed.";
 
 
     }

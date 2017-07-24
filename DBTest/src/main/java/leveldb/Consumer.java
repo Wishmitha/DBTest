@@ -27,7 +27,7 @@ public class Consumer implements Runnable{
 
                 if(db.get(bytes(Integer.toString(j)))!=null){
                     consumedID = Integer.parseInt(asString(db.get(bytes("cid"))));
-                    db.put(bytes("Tampa"), bytes("rocks"));
+                    //db.put(bytes("Tampa"), bytes("rocks"));
                     consumedID++;
                     db.put(bytes("cid"),bytes(Integer.toString(consumedID)));
                     //System.out.println(this.name+" consumes "+"\""+asString(db.get(bytes(Integer.toString(j))))+"\"");
